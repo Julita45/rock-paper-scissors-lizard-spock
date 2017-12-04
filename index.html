@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Fun with JS!</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">
+      Welcome to the game<br>
+        <span class="label label-default">Rock</span>
+        <span class="label label-danger">Paper</span>
+        <span class="label label-primary">Scissors</span>
+        <span class="label label-success">Lizard</span>
+        <span class="label label-info">Spock</span>
+      </h1>
+      <h2 class="text-center">The rules are:</h2>
+      <img class="img-responsive center-block" src="how-to-play.jpg" alt="how to play rock paper scissors lizard spock">
+      <h2 class="text-center">Too complicated?<br>Let's try it this way...</h2>
+    </div>
+    <div id="js-newGameElement" class="container">
+      <div class="row text-center">
+        <button  id="js-newGameButton" class="btn btn-default">
+        New game
+        </button>
+      </div>
+    </div>
+    <div id="js-playerPickElement" class="container">
+      <div class="row text-center">
+        <button id="js-playerPick_rock" class="btn">
+          <span class="badge">
+            <i class="fa fa-hand-rock-o" aria-hidden="true"></i>
+          </span>
+          Rock
+        </button>
+        <button id="js-playerPick_paper"  class="btn">
+          <span class="badge">
+            <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+          </span>
+          Paper
+        </button>
+        <button id="js-playerPick_scissors"  class="btn">
+          <span class="badge">
+            <i class="fa fa-hand-scissors-o" aria-hidden="true"></i>
+          </span>
+          Scissors
+        </button>
+        <button id="js-playerPick_lizard"  class="btn">
+          <span class="badge">
+            <i class="fa fa-hand-lizard-o" aria-hidden="true"></i>
+          </span>
+          Lizard
+        </button>
+        <button id="js-playerPick_spock"  class="btn">
+          <span class="badge">
+            <i class="fa fa-hand-spock-o" aria-hidden="true"></i>
+          </span>
+          Spock
+        </button>
+      </div>
+    </div>
+    <div id="js-resultsTableElement" class="container">
+      <div class="row">
+        <div class="col-xs-5 text-right">
+          <span id="js-playerPoints" class="badge">
+          0
+          </span>
+          <span id="js-playerName">
+          Player Name
+          </span>
+        </div>
+        <div class="col-xs-2 text-center">
+          VS.
+        </div>
+        <div class="col-xs-5 text-left">
+          <span id="js-computerPoints" class="badge">
+          0
+          </span>
+          Computer
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 text-right">
+          <span id="js-playerPick">
+            Player selection
+          </span>
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-5 text-left">
+          <span id="js-computerPick">
+            Computer selection
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 text-right">
+          <span id="js-playerResult">
+            Player Score
+          </span>
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-5 text-left">
+          <span id="js-computerResult">
+          Computer Score
+          </span>
+        </div>
+      </div>
+    </div>
+  <script type="text/javascript" src="scripts.js"></script>
+  </body>
+</html>
