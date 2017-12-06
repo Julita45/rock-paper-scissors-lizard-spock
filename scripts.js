@@ -1,17 +1,10 @@
 var newGameBtn = document.getElementById('js-newGameButton');
-newGameBtn.addEventListener('click', newGame);
 
 var pickRock = document.getElementById('js-playerPick_rock'),
     pickPaper = document.getElementById('js-playerPick_paper'),
     pickScissors = document.getElementById('js-playerPick_scissors'),
     pickLizard = document.getElementById('js-playerPick_lizard'),
     pickSpock = document.getElementById('js-playerPick_spock');
-
-pickRock.addEventListener('click', function() { playerPick('rock') });
-pickPaper.addEventListener('click', function() { playerPick('paper') });
-pickScissors.addEventListener('click', function() { playerPick('scissors') });
-pickLizard.addEventListener('click', function() { playerPick('lizard') });
-pickSpock.addEventListener('click', function() { playerPick('spock') });
 
 var gameState = 'notStarted',  // ended//  started 
     player = {
@@ -25,6 +18,15 @@ var gameState = 'notStarted',  // ended//  started
 var newGameElem = document.getElementById('js-newGameElement'),
     pickElem = document.getElementById('js-playerPickElement'),
     resultsElem = document.getElementById('js-resultsTableElement');
+
+var playerPointsElem = document.getElementById('js-playerPoints'),
+    playerNameElem = document.getElementById('js-playerName'),
+    computerPointsElem = document.getElementById('js-computerPoints');
+
+var playerPickElem = document.getElementById('js-playerPick'),
+    computerPickElem = document.getElementById('js-computerPick'),
+    playerResultElem = document.getElementById('js-playerResult'),
+    computerResultElem = document.getElementById('js-computerResult');
 
 function setGameElements() {
   switch(gameState) {
@@ -44,17 +46,12 @@ function setGameElements() {
 }
 setGameElements();
 
-var playerPointsElem = document.getElementById('js-playerPoints'),
-    playerNameElem = document.getElementById('js-playerName'),
-    computerPointsElem = document.getElementById('js-computerPoints');
-
 function newGame() {
   player.name = prompt('Please enter your name', 'your name');
   if (player.name) {
     player.score = computer.score = 0;
     gameState = 'started';
     setGameElements();
-
     playerNameElem.innerHTML = player.name;
     setGamePoints(); 
   }
@@ -65,45 +62,7 @@ function getComputerPick() {
     return possiblePicks[Math.floor(Math.random()*5)];
 }
 
-var playerPickElem = document.getElementById('js-playerPick'),
-    computerPickElem = document.getElementById('js-computerPick'),
-    playerResultElem = document.getElementById('js-playerResult'),
-    computerResultElem = document.getElementById('js-computerResult');
-
-function checkRoundWinner(playerPick, computerPick) {
-  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
-
-  var winnerIs = 'player';
-
-    if (playerPick == computerPick) {
-        winnerIs = 'none';
-    } else if (
-        (computerPick == 'rock' &&  playerPick == 'scissors') ||
-        (computerPick == 'scissors' &&  playerPick == 'paper') ||
-        (computerPick == 'paper' &&  playerPick == 'rock') ||
-        (computerPick == 'rock' &&  playerPick == 'lizard') ||
-        (computerPick == 'scissors' &&  playerPick == 'lizard') ||
-        (computerPick == 'paper' &&  playerPick == 'spock') ||
-        (computerPick == 'lizard' &&  playerPick == 'spock') ||
-        (computerPick == 'lizard' &&  playerPick == 'paper') ||
-        (computerPick == 'spock' &&  playerPick == 'scissors') ||
-        (computerPick == 'spock' &&  playerPick == 'rock')) {
-
-        winnerIs = 'computer';
-    }
-
-    if (winnerIs == 'player') {
-        playerResultElem.innerHTML = "Win!";
-        computerResultElem.innerHTML = "Lose!";
-        player.score++;
-    } else if (winnerIs == 'computer') {
-        computerResultElem.innerHTML = "Win!";
-        playerResultElem.innerHTML = "Lose!";
-        computer.score++;
-    }
-}
-
- function playerPick(playerPick) {
+function playerPick(playerPick) {
     var computerPick = getComputerPick();
 
     playerPickElem.innerHTML = playerPick;
@@ -119,15 +78,53 @@ function setGamePoints() {
     computerPointsElem.innerText = computer.score;
 }
 
+function checkRoundWinner(playerPick, computerPick) {
+  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+
+  var winnerIs = 'player';
+
+    if (playerPick == computerPick) {
+        winnerIs = 'none';
+    } else if (
+        (computerPick === 'rock' &&  playerPick === 'scissors') ||
+        (computerPick === 'scissors' &&  playerPick === 'paper') ||
+        (computerPick === 'paper' &&  playerPick === 'rock') ||
+        (computerPick === 'rock' &&  playerPick === 'lizard') ||
+        (computerPick === 'scissors' &&  playerPick === 'lizard') ||
+        (computerPick === 'paper' &&  playerPick === 'spock') ||
+        (computerPick === 'lizard' &&  playerPick === 'spock') ||
+        (computerPick === 'lizard' &&  playerPick === 'paper') ||
+        (computerPick === 'spock' &&  playerPick === 'scissors') ||
+        (computerPick === 'spock' &&  playerPick === 'rock')) {
+        winnerIs = 'computer';
+    }
+
+    if (winnerIs === 'player') {
+        playerResultElem.innerHTML = "Win!";
+        computerResultElem.innerHTML = "Lose!";
+        player.score++;
+    } else if (winnerIs === 'computer') {
+        computerResultElem.innerHTML = "Win!";
+        playerResultElem.innerHTML = "Lose!";
+        computer.score++;
+    }
+}
+
 function checkFinalResult() {
-	if (player.score == 10) {
+	if (player.score === 10) {
 		alert('Congratulations! You win!');
-		setGameElements();
 		gameState = 'ended';
-	} else if (computer.score == 10) {
+        setGameElements();
+	} else if (computer.score === 10) {
 		alert('I win, you lose!');
 		gameState = 'ended';
 		setGameElements();
 	}
-	
 }
+
+newGameBtn.addEventListener('click', newGame);
+pickRock.addEventListener('click', function() { playerPick('rock') });
+pickPaper.addEventListener('click', function() { playerPick('paper') });
+pickScissors.addEventListener('click', function() { playerPick('scissors') });
+pickLizard.addEventListener('click', function() { playerPick('lizard') });
+pickSpock.addEventListener('click', function() { playerPick('spock') });
