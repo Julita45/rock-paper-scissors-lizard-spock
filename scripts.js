@@ -116,7 +116,7 @@ function checkFinalResult() {
 		gameState = 'ended';
         setGameElements();
 	} else if (computer.score === 10) {
-		alert('I win, you lose!');
+		alert('Too bad... You lose!');
 		gameState = 'ended';
 		setGameElements();
 	}
