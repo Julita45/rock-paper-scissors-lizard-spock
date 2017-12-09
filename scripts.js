@@ -70,7 +70,7 @@ function playerPick(playerPick) {
 
     checkRoundWinner(playerPick, computerPick);
     setGamePoints();
-    checkFinalResult();
+    setTimeout(checkFinalResult,0);
 } 
 
 function setGamePoints() {
